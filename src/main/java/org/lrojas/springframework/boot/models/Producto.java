@@ -31,7 +31,7 @@ public class Producto {
     @Setter
     @Temporal(TemporalType.DATE)
     @CreatedDate
-    @Column(name = "fecha_alta")
+    @Column(name = "fechaalta")
     private Date fechaAlta;
 
     @Override
