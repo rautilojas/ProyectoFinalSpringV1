@@ -16,7 +16,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void guardar() {
         Producto producto1 = new Producto();
-        producto1.setNombre("gigabyte 80 plus bronze 650w");
+        producto1.setNombre("gabinete lnz40");
         producto1.setPrecio(9000.0);
         productoRepository.save(producto1);
     }
