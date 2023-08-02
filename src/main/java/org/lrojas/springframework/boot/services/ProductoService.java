@@ -5,5 +5,6 @@ import org.springframework.stereotype.Service;
 
 public interface ProductoService {
     void guardar();
-    Iterable<Producto> listar();
+    Iterable<Producto> listarProductos();
+    void eliminarProductos(Integer id);
 }

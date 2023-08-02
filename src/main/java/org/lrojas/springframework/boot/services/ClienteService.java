@@ -5,5 +5,7 @@ import org.springframework.stereotype.Service;
 
 public interface ClienteService {
     void guardar();
-    Iterable<Cliente> listar();
+    Iterable<Cliente> listarClientes();
+
+    void eliminarClientes(Integer id);
 }

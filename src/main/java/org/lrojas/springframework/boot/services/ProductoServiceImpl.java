@@ -5,6 +5,7 @@ import org.lrojas.springframework.boot.repositories.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import java.util.Optional;
 
 @Service
 @Qualifier("productoService")
@@ -22,7 +23,13 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Iterable<Producto> listar() {
+    public Iterable<Producto> listarProductos() {
         return productoRepository.findAll();
     }
+
+    @Override
+    public void eliminarProductos(Integer id) {
+        productoRepository.deleteById(id);
+    }
+
 }

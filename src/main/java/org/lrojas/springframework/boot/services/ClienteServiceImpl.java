@@ -24,5 +24,11 @@ public class ClienteServiceImpl implements ClienteService{
     }
 
     @Override
-    public Iterable<Cliente> listar(){return clienteRepository.findAll();}
+    public Iterable<Cliente> listarClientes(){return clienteRepository.findAll();}
+
+    @Override
+    public void eliminarClientes(Integer id) {
+        clienteRepository.deleteById(id);
+    }
+
 }
