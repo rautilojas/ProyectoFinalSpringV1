@@ -16,27 +16,40 @@ import org.springframework.ui.Model;
 
 @Controller
 public class ClienteControllers {
-
+    //Autowired esta
     @Autowired
     @Qualifier("clienteService")
     private ClienteService clienteService;
 
+
     @RequestMapping("/addCliente")
+    //Vamos a agregar la notacion de PathVariable que nos permitira tomar desde la url del navegador un valor.
     public ResponseEntity<String> addCliente(){
+
         clienteService.guardar();
+
         return new ResponseEntity<>("guardado", HttpStatus.OK);
     }
 
-    @RequestMapping(value="/listarClientes", method= RequestMethod.GET)
-    public String listarClientes(Model model){
-        model.addAttribute("titulo", "Listado de Clientes");
-        model.addAttribute("clientes", clienteService.listarClientes());
-        return "listarClientes";
+    @RequestMapping(value = "/agregarCliente")
+    public String agregarCliente(Model model){
+        model.addAttribute("cliente", new Cliente());
+        return "clientes/agregar_cliente";
     }
 
-    @RequestMapping(value = "/eliminarClientes/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
-    public ResponseEntity<String> eliminarClientes(@PathVariable("id") Integer id) {
-        clienteService.eliminarClientes(id);
-        return new ResponseEntity<>("Cliente eliminado correctamente.", HttpStatus.OK);
+    @RequestMapping(value = "/guardarCliente", method = RequestMethod.POST)
+    public String guardarCliente(Cliente cliente){
+        clienteService.guardar(cliente);
+        return "clientes/listarClientes";
     }
+
+
+
+    @RequestMapping(value="/listarClientes", method= RequestMethod.GET)
+    public String listar(Model model){
+        model.addAttribute("titulo", "Listado de Clientes");
+        model.addAttribute("clientes", clienteService.listar());
+        return "clientes/listarClientes";
+    }
+
 }
