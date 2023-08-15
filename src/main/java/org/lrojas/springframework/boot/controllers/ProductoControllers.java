@@ -1,5 +1,6 @@
 package org.lrojas.springframework.boot.controllers;
 
+import org.lrojas.springframework.boot.models.Cliente;
 import org.lrojas.springframework.boot.models.Producto;
 import org.lrojas.springframework.boot.repositories.ProductoRepository;
 import org.lrojas.springframework.boot.services.ProductoService;
@@ -34,27 +35,33 @@ public class ProductoControllers {
         return new ResponseEntity<>("guardado", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/agregar")
+    @GetMapping(value = "/agregarProducto")
     public String agregarProducto(Model model) {
         model.addAttribute("producto", new Producto());
-        return "agregar_producto";
+        return "productos/agregar_producto";
     }
 
     @RequestMapping(value="/listarProductos", method= RequestMethod.GET)
     public String listar(Model model){
         model.addAttribute("titulo", "Listado de Productos");
         model.addAttribute("productos", productoService.listar());
-        return "listar";
+        return "productos/listarProductos";
     }
 
     /*Agregar un producto Nuevo*/
+
+    @RequestMapping(value = "/guardarProducto", method = RequestMethod.POST)
+    public String guardarProducto(Producto producto){
+        productoService.guardar();
+        return "productos/listarProductos";
+    }
 
     /*Eliminar Producto byID*/
     @RequestMapping(value="/eliminarProducto", method= RequestMethod.GET)
     public String eliminar(Model model){
         model.addAttribute("titulo", "Listado de Productos");
         model.addAttribute("productos", productoService);
-        return "productos/listar";
+        return "productos/listarProductos";
     }
 
 }

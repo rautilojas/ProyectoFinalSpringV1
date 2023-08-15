@@ -25,9 +25,7 @@ public class ClienteControllers {
     @RequestMapping("/addCliente")
     //Vamos a agregar la notacion de PathVariable que nos permitira tomar desde la url del navegador un valor.
     public ResponseEntity<String> addCliente(){
-
         clienteService.guardar();
-
         return new ResponseEntity<>("guardado", HttpStatus.OK);
     }
 

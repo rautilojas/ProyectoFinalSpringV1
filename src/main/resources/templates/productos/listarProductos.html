@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title th:text="${titulo}"></title>
-</head>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
 <body>
-<h1 th:text="${titulo}"></h1>
+<main layout:fragment="contenido">
 
-<table>
-    <thead>
-    <tr>
-        <th>id Productos</th>
-        <th>Nombre </th>
-        <th>Fecha de Alta</th>
-        <th>Precio</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="producto: ${productos}">
-        <td th:text="${producto.id}"></td>
-        <td th:text="${producto.nombre}"></td>
-        <td th:text="${producto.fechaAlta}"></td>
-        <td th:text="${producto.precio}"></td>
-    </tr>
+    <table class="table-primary">
+        <thead>
+        <tr>
+            <th>id Productos</th>
+            <th>Nombre </th>
+            <th>Fecha de Alta</th>
+            <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="producto: ${productos}">
+            <td th:text="${producto.id}"></td>
+            <td th:text="${producto.nombre}"></td>
+            <td th:text="${producto.fechaAlta}"></td>
+            <td th:text="${producto.precio}"></td>
+            <td >
+                <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}">Editar <i
+                        class="fa fa-edit"></i></a>
+            </td>
 
-    </tbody>
-</table>
 
+        </tr>
+
+        </tbody>
+    </table>
+</main>
 </body>
 </html>
