@@ -13,7 +13,9 @@ public interface ProductoService {
 
     Optional<Producto> buscarPorId(Integer id);
 
-    Boolean actualizarProducto(Producto producto);
+    void actualizarProducto(Producto producto);
 
     Boolean actualizarPrecioProducto(Integer idProducto, Double precioActualizado);
+
+    void guardar(Producto producto);
 }

@@ -2,9 +2,13 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="master">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+</head>
 <body>
+<h1 th:text="${titulo}"></h1>
 <main layout:fragment="contenido">
-
     <table class="table-primary">
         <thead>
         <tr>
@@ -21,11 +25,14 @@
             <td th:text="${producto.fechaAlta}"></td>
             <td th:text="${producto.precio}"></td>
             <td >
-                <a class="btn btn-warning" th:href="@{/productos/editar/} + ${producto.id}">Editar <i
+                <a class="btn btn-warning" th:href="@{/editarProductos/} + ${producto.id}">Editar <i
                         class="fa fa-edit"></i></a>
             </td>
-
-
+            <td >
+                <a class="btn btn-danger" th:href="@{/eliminarProductos/} + ${producto.id}"
+                                onclick="return confirm('Esta seguro que desea eliminar el prodcuto?');">Eliminar <i
+                        class="fa fa-trash-o"></i></a>
+            </td>
         </tr>
 
         </tbody>

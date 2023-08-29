@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="master">
 <head>
     <meta charset="UTF-8">
     <title th:text="${titulo}"></title>
 </head>
 <body>
 <h1 th:text="${titulo}"></h1>
-
-<table>
+<main layout:fragment="contenido">
+    <table class="table-primary">
     <thead>
     <tr>
         <th>id Clientes</th>
@@ -24,10 +26,20 @@
         <td th:text="${cliente.apellido}"></td>
         <td th:text="${cliente.dni}"></td>
         <td th:text="${cliente.email}"></td>
+        <td >
+            <a class="btn btn-warning" th:href="@{/editarClientes/} + ${cliente.id}">Editar <i
+                    class="fa fa-edit"></i></a>
+        </td>
+        <td >
+            <a class="btn btn-danger" th:href="@{/eliminarClientes/} + ${cliente.id}"
+               onclick="return confirm('Esta seguro que desea eliminar el prodcuto?');">Eliminar <i
+                    class="fa fa-trash-o"></i></a>
+        </td>
+    </tr>
     </tr>
 
     </tbody>
 </table>
-
+</main>
 </body>
 </html>
